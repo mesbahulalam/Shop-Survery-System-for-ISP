@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Survey Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">Shop Survey Form</h1>
+            <a href="list.php" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">View All Shops</a>
+        </div>
+        
+        <form action="save.php" method="POST" id="shopForm" class="space-y-6">
+            <!-- Shop Name -->
+            <input type="text" name="shop_name" required placeholder="Shop Name"
+                class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+
+            <!-- Proprietor -->
+            <input type="text" name="proprietor" required placeholder="Shop Proprietor"
+                class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+
+            <!-- Phone Numbers -->
+            <div id="phoneFields" class="space-y-3">
+                <div class="flex gap-2">
+                    <input type="tel" name="phones[]" required placeholder="Phone Number"
+                        class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    <button type="button" onclick="addPhoneField()"
+                        class="px-4 h-12 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center min-w-[48px]">+</button>
+                </div>
+            </div>
+
+            <!-- Current ISP -->
+            <input type="text" name="current_isp" placeholder="Current ISP"
+                class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+
+            <!-- Package Name/Speed -->
+            <input type="text" name="package_name" placeholder="Package Name/Speed"
+                class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+
+            <!-- Location -->
+            <div class="flex gap-2">
+                <input type="text" name="latitude" id="latitude" readonly placeholder="Latitude"
+                    class="block w-full h-12 px-4 rounded-lg border-gray-300 bg-gray-50 shadow-sm">
+                <input type="text" name="longitude" id="longitude" readonly placeholder="Longitude"
+                    class="block w-full h-12 px-4 rounded-lg border-gray-300 bg-gray-50 shadow-sm">
+                <button type="button" onclick="getLocation()"
+                    class="px-4 h-12 bg-green-500 text-white rounded-lg hover:bg-green-600 flex items-center justify-center min-w-[120px]">
+                    Get Location
+                </button>
+                <button type="button" onclick="openGoogleMaps()" disabled
+                    class="px-4 h-12 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center min-w-[120px]">
+                    Open Google Maps
+                </button>
+            </div>
+
+            <!-- Interested Toggle -->
+            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" name="interested" class="sr-only peer">
+                    <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 
+                        rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white 
+                        after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white 
+                        after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all 
+                        peer-checked:bg-blue-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-700">Interested in Our Services</span>
+                </label>
+            </div>
+
+            <!-- Notes -->
+            <textarea name="notes" rows="4" placeholder="Additional Notes"
+                class="block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full h-12 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium">
+                Submit Survey
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function addPhoneField() {
+            const phoneFields = document.getElementById('phoneFields');
+            const newField = document.createElement('div');
+            newField.className = 'flex gap-2';
+            newField.innerHTML = `
+                <input type="tel" name="phones[]" required placeholder="Phone Number"
+                    class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                <button type="button" onclick="this.parentElement.remove()"
+                    class="px-4 h-12 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center min-w-[48px]">-</button>
+            `;
+            phoneFields.appendChild(newField);
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        document.getElementById('latitude').value = position.coords.latitude;
+                        document.getElementById('longitude').value = position.coords.longitude;
+                    },
+                    (error) => {
+                        alert("Error getting location: " + error.message);
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+        function openGoogleMaps() {
+            const latitude = document.getElementById('latitude').value;
+            const longitude = document.getElementById('longitude').value;
+            if (latitude && longitude) {
+                const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                window.open(url, '_blank');
+            } else {
+                alert("Please get the location first.");
+            }
+        }
+    </script>
+</body>
+</html>
