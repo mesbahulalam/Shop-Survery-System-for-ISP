@@ -34,10 +34,12 @@ class Database {
     public function insertShop($data) {
         $stmt = $this->db->prepare("INSERT INTO shops (
             shop_name, proprietor, phones, current_isp, 
-            package_name, latitude, longitude, interested, notes
+            package_name, monthly_bill, billing_date, 
+            latitude, longitude, interested, notes
         ) VALUES (
             :shop_name, :proprietor, :phones, :current_isp,
-            :package_name, :latitude, :longitude, :interested, :notes
+            :package_name, :monthly_bill, :billing_date, 
+            :latitude, :longitude, :interested, :notes
         )");
         
         $stmt->bindValue(':shop_name', $data['shop_name']);
