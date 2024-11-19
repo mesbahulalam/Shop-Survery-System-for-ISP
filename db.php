@@ -20,6 +20,7 @@ class Database {
             phones TEXT NOT NULL,
             current_isp TEXT,
             package_name TEXT,
+            monthly_bill INTEGER,
             current_billing_date DATE,
             latitude TEXT,
             longitude TEXT,

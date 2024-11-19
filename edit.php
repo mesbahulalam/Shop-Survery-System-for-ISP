@@ -136,12 +136,17 @@ if (!$shop) {
             <input type="text" name="package_name" placeholder="Package Name/Speed" 
                 value="<?= htmlspecialchars($shop['package_name']) ?>"
                 class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-
+                
+            <!-- Current Monthly Bill -->
+            <input type="number" name="monthly_bill" placeholder="Current Monthly Bill"
+                value="<?= htmlspecialchars($shop['monthly_bill']) ?>"
+                class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                
             <!-- Billing Date -->
             <input type="date" name="billing_date" placeholder="Billing Date" 
                 value="<?= htmlspecialchars($shop['billing_date']) ?>"
                 class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                
+
             <!-- Location -->
             <div class="flex gap-2">
                 <input type="text" name="latitude" id="latitude" placeholder="Latitude" 
