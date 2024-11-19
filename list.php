@@ -77,6 +77,7 @@ if (isset($_POST['delete'])) {
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proprietor</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phones</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ISP</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Billing Date</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
@@ -92,6 +93,7 @@ if (isset($_POST['delete'])) {
                                 <?php endforeach; ?>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= htmlspecialchars($shop['current_isp']) ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= htmlspecialchars($shop['current_billing_date']) ?></td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <?php if ($shop['interested']): ?>
                                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">

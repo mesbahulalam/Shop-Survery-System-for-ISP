@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'phones' => $_POST['phones'],
         'current_isp' => $_POST['current_isp'],
         'package_name' => $_POST['package_name'],
+        'billing_date' => $_POST['billing_date'],
         'latitude' => $_POST['latitude'],
         'longitude' => $_POST['longitude'],
         'interested' => isset($_POST['interested']),

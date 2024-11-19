@@ -25,6 +25,7 @@ class ShopEditor extends Database {
             phones = :phones,
             current_isp = :current_isp,
             package_name = :package_name,
+            billing_date = :billing_date,
             latitude = :latitude,
             longitude = :longitude,
             interested = :interested,
@@ -37,6 +38,7 @@ class ShopEditor extends Database {
         $stmt->bindValue(':phones', json_encode($data['phones']));
         $stmt->bindValue(':current_isp', $data['current_isp']);
         $stmt->bindValue(':package_name', $data['package_name']);
+        $stmt->bindValue(':billing_date', $data['billing_date']);
         $stmt->bindValue(':latitude', $data['latitude']);
         $stmt->bindValue(':longitude', $data['longitude']);
         $stmt->bindValue(':interested', $data['interested'] ? 1 : 0);
@@ -56,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'phones' => $_POST['phones'],
         'current_isp' => $_POST['current_isp'],
         'package_name' => $_POST['package_name'],
+        'billing_date' => $_POST['billing_date'],
         'latitude' => $_POST['latitude'],
         'longitude' => $_POST['longitude'],
         'interested' => isset($_POST['interested']),
@@ -134,6 +137,11 @@ if (!$shop) {
                 value="<?= htmlspecialchars($shop['package_name']) ?>"
                 class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
 
+            <!-- Billing Date -->
+            <input type="date" name="billing_date" placeholder="Billing Date" 
+                value="<?= htmlspecialchars($shop['billing_date']) ?>"
+                class="block w-full h-12 px-4 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                
             <!-- Location -->
             <div class="flex gap-2">
                 <input type="text" name="latitude" id="latitude" placeholder="Latitude" 
