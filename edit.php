@@ -25,6 +25,7 @@ class ShopEditor extends Database {
             phones = :phones,
             current_isp = :current_isp,
             package_name = :package_name,
+            monthly_bill = :monthly_bill,
             billing_date = :billing_date,
             latitude = :latitude,
             longitude = :longitude,
@@ -38,6 +39,7 @@ class ShopEditor extends Database {
         $stmt->bindValue(':phones', json_encode($data['phones']));
         $stmt->bindValue(':current_isp', $data['current_isp']);
         $stmt->bindValue(':package_name', $data['package_name']);
+        $stmt->bindValue(':monthly_bill', $data['monthly_bill']);
         $stmt->bindValue(':billing_date', $data['billing_date']);
         $stmt->bindValue(':latitude', $data['latitude']);
         $stmt->bindValue(':longitude', $data['longitude']);
@@ -58,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'phones' => $_POST['phones'],
         'current_isp' => $_POST['current_isp'],
         'package_name' => $_POST['package_name'],
+        'monthly_bill' => $_POST['monthly_bill'],
         'billing_date' => $_POST['billing_date'],
         'latitude' => $_POST['latitude'],
         'longitude' => $_POST['longitude'],

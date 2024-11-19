@@ -20,8 +20,8 @@ class Database {
             phones TEXT NOT NULL,
             current_isp TEXT,
             package_name TEXT,
-            monthly_bill INTEGER,
-            current_billing_date DATE,
+            monthly_bill TEXT,
+            billing_date TEXT,
             latitude TEXT,
             longitude TEXT,
             interested INTEGER DEFAULT 0,
@@ -45,6 +45,8 @@ class Database {
         $stmt->bindValue(':phones', json_encode($data['phones']));
         $stmt->bindValue(':current_isp', $data['current_isp']);
         $stmt->bindValue(':package_name', $data['package_name']);
+        $stmt->bindValue(':monthly_bill', $data['monthly_bill']);
+        $stmt->bindValue(':billing_date', $data['billing_date']);
         $stmt->bindValue(':latitude', $data['latitude']);
         $stmt->bindValue(':longitude', $data['longitude']);
         $stmt->bindValue(':interested', $data['interested'] ? 1 : 0);
