@@ -73,18 +73,21 @@ if (isset($_POST['delete'])) {
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shop Name</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proprietor</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phones</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ISP</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Billing Date</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Processed</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         <?php foreach ($shops as $shop): ?>
                         <tr>
+                            <td class="px-6 py-4 whitespace-nowrap"><?= htmlspecialchars($shop['id']) ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= htmlspecialchars($shop['shop_name']) ?></td>
                             <td class="px-6 py-4 whitespace-nowrap"><?= htmlspecialchars($shop['proprietor']) ?></td>
                             <td class="px-6 py-4">
@@ -102,6 +105,17 @@ if (isset($_POST['delete'])) {
                                 <?php else: ?>
                                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
                                         Not Interested
+                                    </span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <?php if ($shop['processed']): ?>
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                        Processed
+                                    </span>
+                                <?php else: ?>
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                        Pending
                                     </span>
                                 <?php endif; ?>
                             </td>

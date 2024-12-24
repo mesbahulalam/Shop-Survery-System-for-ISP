@@ -25,10 +25,14 @@ class Database {
             latitude TEXT,
             longitude TEXT,
             interested INTEGER DEFAULT 0,
+            processed INTEGER DEFAULT 0,
             notes TEXT,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )";
         $this->db->exec($query);
+
+        // Add column if it doesn't exist (for existing databases)
+        $this->db->exec("ALTER TABLE shops ADD COLUMN processed INTEGER DEFAULT 0");
     }
     
     public function insertShop($data) {

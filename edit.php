@@ -30,6 +30,7 @@ class ShopEditor extends Database {
             latitude = :latitude,
             longitude = :longitude,
             interested = :interested,
+            processed = :processed,
             notes = :notes
             WHERE id = :id");
         
@@ -44,6 +45,7 @@ class ShopEditor extends Database {
         $stmt->bindValue(':latitude', $data['latitude']);
         $stmt->bindValue(':longitude', $data['longitude']);
         $stmt->bindValue(':interested', $data['interested'] ? 1 : 0);
+        $stmt->bindValue(':processed', $data['processed'] ? 1 : 0);
         $stmt->bindValue(':notes', $data['notes']);
         
         return $stmt->execute();
@@ -65,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'latitude' => $_POST['latitude'],
         'longitude' => $_POST['longitude'],
         'interested' => isset($_POST['interested']),
+        'processed' => isset($_POST['processed']),
         'notes' => $_POST['notes']
     ];
     
@@ -174,6 +177,19 @@ if (!$shop) {
                         after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all 
                         peer-checked:bg-blue-600"></div>
                     <span class="ml-3 text-sm font-medium text-gray-700">Interested in Our Services</span>
+                </label>
+            </div>
+
+            <!-- Processed Toggle -->
+            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" name="processed" class="sr-only peer" <?= $shop['processed'] ? 'checked' : '' ?>>
+                    <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 
+                        rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white 
+                        after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white 
+                        after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all 
+                        peer-checked:bg-blue-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-700">Processed Client</span>
                 </label>
             </div>
 

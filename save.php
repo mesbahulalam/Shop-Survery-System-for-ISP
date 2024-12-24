@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'latitude' => $_POST['latitude'],
         'longitude' => $_POST['longitude'],
         'interested' => isset($_POST['interested']),
+        'processed' => isset($_POST['processed']),
         'notes' => $_POST['notes']
     ];
     
