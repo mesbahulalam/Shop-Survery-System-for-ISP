@@ -32,7 +32,7 @@ class Database {
         $this->db->exec($query);
 
         // Add column if it doesn't exist (for existing databases)
-        $this->db->exec("ALTER TABLE shops ADD COLUMN processed INTEGER DEFAULT 0");
+        // $this->db->exec("ALTER TABLE shops ADD COLUMN processed INTEGER DEFAULT 0");
     }
     
     public function insertShop($data) {
